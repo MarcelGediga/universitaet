@@ -1,0 +1,17 @@
+{
+	"ulid": "01HQQA574DJ2861T06586PMPGN",
+	"minTime": 1708670605412,
+	"maxTime": 1708675200000,
+	"stats": {
+		"numSamples": 17582,
+		"numSeries": 298,
+		"numChunks": 298
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01HQQA574DJ2861T06586PMPGN"
+		]
+	},
+	"version": 1
+}
