@@ -1,0 +1,52 @@
+@startuml Universitaet
+
+skinparam classAttributeIconSize 0
+' skinparam monochrome true
+
+package java {
+    package util {
+        class UUID
+        interface List<T>
+        class URL
+    }
+
+    package time {
+        class LocalDate
+    }
+
+package com.acme.universitaet.entity #DDDDDD {
+    class Fakultaet {
+        name: String
+        ansprechpartner: String
+        dekan: String
+    }
+
+    class Adresse {
+        plz: String
+        ort: String
+    }
+
+    class Universitaet << entity >> {
+        id : UUID
+        name : String
+        email : String
+        gruendungsdatum: LocalDate
+        homepage: URL
+        adresse: Adresse
+        fakultaeten: List<Fakultaet>
+    }
+
+    Universitaet *--> "0..*" Fakultaet : fakultaeten
+    Universitaet *--> "1..n" Adresse : adresse
+
+    Universitaet ..> UUID
+    Universitaet ..> LocalDate
+    Universitaet ..> List
+    Universitaet ..> URL
+}
+
+hide empty members
+
+footer (c) Marcel Gediga
+
+@enduml

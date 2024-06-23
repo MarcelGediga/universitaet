@@ -1,0 +1,92 @@
+@startuml UniversitaetWriteController
+
+skinparam classAttributeIconSize 0
+
+package org.springframework {
+package stereotype {
+        interface "@Controller" as Controller
+    }
+
+    package web.bind.annotation {
+        interface "@RequestMapping" as RequestMapping
+        interface "@PathVariable" as PathVariable
+        interface "@RequestBody" as RequestBody
+        interface "@ExceptionHandler" as ExceptionHandler
+    }
+
+    package http {
+        class ResponseEntity<T>
+        class ProblemDetail
+
+        package converter {
+            class HttpMessageNotReadableException
+        }
+
+        ResponseEntity .[hidden].> ProblemDetail
+        ProblemDetail .[hidden].> HttpMessageNotReadableException
+    }
+}
+
+package jakarta.servlet.http {
+    interface HttpServletRequest
+}
+
+package java.util {
+    interface Collection<T>
+    class UUID
+}
+
+package com.acme.universitaet {
+    package service {
+        class UniversitaetWriteService << control >> << @Service >>
+
+        class ConstraintViolationsException
+        class EmailExistsException
+    }
+
+    package rest #DDDDDD {
+        package patch {
+            class PatchOperation <<entity>>
+        }
+
+        class UniversitaetDTO <<entity>>
+
+        class UniversitaetWriteController << boundary >> << @Controller >> << @RequestMapping >> {
+            + @PostMapping post(@RequestBody UniversitaetDTO: UniversitaetDTO, request: HttpServletRequest): ResponseEntity<Void>
+            + @PutMapping put(@PathVariable id: UUID, @RequestBody UniversitaetDTO: UniversitaetDTO)
+            + @PatchMapping patch(@PathVariable id: UUID, @RequestBody patchOps: Collection<PatchOperation>)
+            + @DeleteMapping deleteById(@PathVariable id: UUID)
+            + @ExceptionHandler onConstraintViolations(ex: ConstraintViolationsException, req: HttpServletRequest): ResponseEntity<ProblemDetail>
+            + @ExceptionHandler onEmailExists(ex: EmailExistsException, req: HttpServletRequest): ResponseEntity<ProblemDetail>
+            + @ExceptionHandler onMessageNotReadable(ex: HttpMessageNotReadableException, req: HttpServletRequest): ResponseEntity<ProblemDetail>
+        }
+
+        UniversitaetWriteController o-down-> "1" UniversitaetWriteService : service
+        UniversitaetWriteController ..> UniversitaetDTO
+        UniversitaetWriteController ..> ConstraintViolationsException
+        UniversitaetWriteController ..> EmailExistsException
+        UniversitaetWriteController ..> PatchOperation
+
+        UniversitaetWriteController .up.> ResponseEntity
+        UniversitaetWriteController .up.> ProblemDetail
+        UniversitaetWriteController .up.> HttpMessageNotReadableException
+        UniversitaetWriteController .right.> HttpServletRequest
+
+        UniversitaetWriteController .up.> Controller
+        UniversitaetWriteController .up.> RequestMapping
+        UniversitaetWriteController .up.> PathVariable
+        UniversitaetWriteController .up.> RequestBody
+        UniversitaetWriteController .up.> ExceptionHandler
+
+        UniversitaetWriteController .right.> UUID
+        UniversitaetWriteController .right.> Collection
+
+        PatchOperation .[hidden].> UniversitaetWriteService
+    }
+}
+
+hide empty members
+
+footer (c) Marcel Gediga
+
+@enduml

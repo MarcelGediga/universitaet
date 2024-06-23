@@ -1,0 +1,39 @@
+@startuml UniversitaetWriteService
+
+skinparam classAttributeIconSize 0
+
+package org.springframework.stereotype {
+    interface Service
+}
+
+package java.util {
+    class UUID
+}
+
+package com.acme.universitaet {
+    package entity {
+        class Universitaet << entity >>
+    }
+
+    package repository {
+        class UniversitaetRepository << control >> << @Repository >>
+    }
+
+    package service #DDDDDD {
+        class UniversitaetWriteService << control >> << @Service >> {
+            + create(universitaet: Universitaet): Universitaet
+            + update(universitaet: Universitaet, id: UUID)
+        }
+
+        UniversitaetWriteService o--> "1" UniversitaetRepository : repo
+        UniversitaetWriteService .right.> Universitaet
+        UniversitaetWriteService .up.> Service
+        UniversitaetWriteService .up.> UUID
+    }
+}
+
+hide empty members
+
+footer (c) Marcel Gediga
+
+@enduml

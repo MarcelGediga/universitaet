@@ -1,0 +1,10 @@
+@startuml
+
+package com.acme.universitaet.entity #DDDDDD {
+    class Adresse {
+        plz: String
+        ort: String
+    }
+}
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml UniversitaetReadService
+
+skinparam classAttributeIconSize 0
+
+package org.springframework.stereotype {
+    interface Service
+}
+
+package java.util {
+    interface List<T>
+    interface Map<K,V>
+    class UUID
+
+    UUID .left[hidden].> Service
+}
+
+package com.acme.universitaet {
+    package entity {
+        class Universitaet << entity >>
+
+        Universitaet .up[hidden].> List
+    }
+
+    package repository {
+        class UniversitaetRepository << control >> << @Repository >>
+    }
+
+    package service #DDDDDD {
+        class UniversitaetReadService << control >> << @Service >> {
+            + findById(id: UUID): Universitaet
+            + find(suchkriterien: Map<String, List<String>>): Collection<Universitaet>
+        }
+
+        UniversitaetReadService o--> UniversitaetRepository : repo
+        UniversitaetReadService .right.> Universitaet
+        UniversitaetReadService ..> Service
+        UniversitaetReadService .up.> UUID
+        UniversitaetReadService .up> List
+        UniversitaetReadService .up.> Map
+    }
+}
+
+hide empty members
+
+footer (c) Marcel Gediga
+
+@enduml

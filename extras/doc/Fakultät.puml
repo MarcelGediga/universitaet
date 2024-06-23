@@ -1,0 +1,11 @@
+@startuml
+
+package com.acme.universitaet.entity #DDDDDD {
+    class Fakultaet {
+        name: String
+        ansprechpartner: String
+        dekan: String
+    }
+}
+
+@enduml

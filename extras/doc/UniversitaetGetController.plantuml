@@ -1,0 +1,79 @@
+@startuml UniversitaetGetController
+
+skinparam classAttributeIconSize 0
+
+package org.springframework {
+    package web.bind.annotation {
+        interface "@RestController" as RestController
+        interface "@RequestMapping" as RequestMapping
+        interface "@PathVariable" as PathVariable
+        interface "@RequestParam" as RequestParam
+        interface "@ExceptionHandler" as ExceptionHandler
+        interface "@ResponseStatus" as ResponseStatus
+    }
+
+    package http {
+        class ResponseEntity<T>
+    }
+    package hateoas {
+        class CollectionModel<E>
+    }
+    package util {
+        class MultiValueMap<K,V>
+    }
+}
+
+package jakarta.servlet.http {
+    interface HttpServletRequest
+}
+
+package java.util {
+    class UUID
+}
+
+package com.acme.universitaet {
+    package service {
+        class UniversitaetReadService << control >> << @Service >>
+        class NotFoundException
+    }
+
+    package rest #DDDDDD {
+        class UniversitaetModel <<entity>>
+
+        class UniversitaetGetController << boundary >> << @RestController >> << @RequestMapping >> {
+            + getById(id: UUID, request: HttpServletRequest): UniversitaetModel
+            + get(queryParams: MultiValueMap<String, String>, request: HttpServletRequest): CollectionModel<UniversitaetModel>
+        }
+
+        class CommonExceptionHandler << @ControllerAdvice >> {
+            + onNotFound(ex: NotFoundException)
+        }
+
+        UniversitaetGetController o--> "1" UniversitaetReadService : service
+        UniversitaetGetController ..> UniversitaetModel
+
+        UniversitaetGetController .up.> RestController
+        UniversitaetGetController .up.> RequestMapping
+        UniversitaetGetController .up.> PathVariable
+        UniversitaetGetController .up.> RequestParam
+        UniversitaetGetController .up.> ResponseEntity
+        UniversitaetGetController .up.> MultiValueMap
+        UniversitaetGetController .up.> CollectionModel
+        UniversitaetGetController .right.> HttpServletRequest
+
+        CommonExceptionHandler .up.> ExceptionHandler
+        CommonExceptionHandler .up.> ResponseStatus
+        CommonExceptionHandler ..> NotFoundException
+        CommonExceptionHandler .up[hidden].> UniversitaetModel
+
+        UniversitaetGetController .right.> UUID
+
+        UniversitaetModel ..> UniversitaetReadService
+    }
+}
+
+hide empty members
+
+footer (c) Marcel Gediga
+
+@enduml

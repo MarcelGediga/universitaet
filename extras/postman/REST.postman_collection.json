@@ -1,0 +1,598 @@
+{
+	"info": {
+		"name": "REST",
+		"description": "REST-Schnittstelle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Suche mit ID",
+			"item": [
+				{
+					"name": "Vorhandene ID 00000000-0000-0000-0000-000000000001",
+					"event": [
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/hal+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{rest_url}}/:id",
+							"host": [
+								"{{rest_url}}"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "00000000-0000-0000-0000-000000000001"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nicht-vorhandene ID 99999999-9999-9999-9999-999999999999",
+					"event": [
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{rest_url}}/:id",
+							"host": [
+								"{{rest_url}}"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "99999999-9999-9999-9999-999999999999",
+									"description": "Universitaet ID"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Über die REST-Schnittstelle nach Universitaeten anhand der ID suchen.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Suche mit Suchkriterien",
+			"item": [
+				{
+					"name": "Alle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/hal+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{rest_url}}",
+							"host": [
+								"{{rest_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vorhandene Emailadresse",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/hal+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{rest_url}}?email=uni_a@example.com",
+							"host": [
+								"{{rest_url}}"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "uni_a@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nicht-vorhandene Emailadresse",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/hal+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{rest_url}}?email=Nicht%40Vorhanden",
+							"host": [
+								"{{rest_url}}"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "Nicht%40Vorhanden"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Über die REST-Schnittstelle nach Universitaeten mit Suchkriterien suchen.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Neuanlegen",
+			"item": [
+				{
+					"name": "Neue Universitaet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Testuni\",\r\n    \"email\": \"Testuni@test.de\",\r\n    \"gruendungsdatum\": \"2022-01-31\",\r\n    \"homepage\": \"https://www.test.de\",\r\n    \"adresse\": {\r\n        \"plz\": \"54321\",\r\n        \"ort\": \"Testort\"\r\n    },\r\n    \"fakultaeten\": [{\r\n        \"name\": Test,\r\n        \"ansprechpartner\": Herr Test,\r\n        \"dekan\": Herr Test\r\n    }],\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{rest_url}}",
+							"host": [
+								"{{rest_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Neuer Universitaet mit bereits existierender Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+              "raw": "{\r\n    \"name\": \"Testuni\",\r\n    \"email\": \"uni_a@example.com\",\r\n    \"gruendungsdatum\": \"2022-01-31\",\r\n    \"homepage\": \"https://www.test.de\",\r\n    \"adresse\": {\r\n        \"plz\": \"54321\",\r\n        \"ort\": \"Testort\"\r\n    },\r\n    \"fakultaeten\": [{\r\n        \"name\": Test,\r\n        \"ansprechpartner\": Herr Test,\r\n        \"dekan\": Herr Test\r\n    }],\r\n}",
+              "options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{rest_url}}",
+							"host": [
+								"{{rest_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Neuer Universitaet mit ungültigen Daten",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+              "raw": "{\r\n    \"name\": \"Testuni???\",\r\n    \"email\": \"uni_a@example.c!om123\",\r\n    \"gruendungsdatum\": \"2022-01-31\",\r\n    \"homepage\": \"https://www.test.de\",\r\n    \"adresse\": {\r\n        \"plz\": \"54321\",\r\n        \"ort\": \"Testort\"\r\n    },\r\n    \"fakultaeten\": [{\r\n        \"name\": Test,\r\n        \"ansprechpartner\": Herr Test,\r\n        \"dekan\": Herr Test\r\n    }],\r\n}",
+              "options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{rest_url}}",
+							"host": [
+								"{{rest_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Neuer Universitaet mit fehlerhaften Datentypen",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+              "raw": "{\r\n    \"name\": \"Testuni\",\r\n    \"email\": \"uni_a@example.com\",\r\n    \"gruendungsdatum\": \"2022.01.31\",\r\n    \"homepage\": \"https://www.test.de\",\r\n    \"adresse\": {\r\n        \"plz\": \"54321\",\r\n        \"ort\": \"Testort\"\r\n    },\r\n    \"fakultaeten\": [{\r\n        \"name\": Test,\r\n        \"ansprechpartner\": Herr Test,\r\n        \"dekan\": Herr Test\r\n    }],\r\n}",
+              "options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{rest_url}}",
+							"host": [
+								"{{rest_url}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Über die REST-Schnittstelle neue Universitaeten anlegen",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+    {
+      "name": "Ändern durch PUT",
+      "item": [
+        {
+          "name": "Universitaet 30 ändern",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "If-Match",
+                "value": "\"0\"",
+                "type": "text",
+                "uuid": "83fa9bc9-cc30-41e0-9286-a82bb745cfcf"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Testuni\",\r\n    \"email\": \"uni_a@example.com\",\r\n    \"gruendungsdatum\": \"2022.01.31\",\r\n    \"homepage\": \"https://www.test.de\",\r\n    \"adresse\": {\r\n        \"plz\": \"54321\",\r\n        \"ort\": \"Testort\"\r\n    },\r\n    \"fakultaeten\": [{\r\n        \"name\": Test,\r\n        \"ansprechpartner\": Herr Test,\r\n        \"dekan\": Herr Test\r\n    }],\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{rest_url}}/:id",
+              "host": [
+                "{{rest_url}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "00000000-0000-0000-0000-000000000030",
+                  "uuid": "44125c2d-5977-43dd-9a55-47bc2b35416c"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Nicht-vorhandener Universitaet ändern",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "If-Match",
+                "value": "\"0\"",
+                "type": "text",
+                "uuid": "496d8bc7-429f-483d-9032-6dff83f8a646"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Testuni\",\r\n    \"email\": \"uni_a@example.com\",\r\n    \"gruendungsdatum\": \"2022.01.31\",\r\n    \"homepage\": \"https://www.test.de\",\r\n    \"adresse\": {\r\n        \"plz\": \"54321\",\r\n        \"ort\": \"Testort\"\r\n    },\r\n    \"fakultaeten\": [{\r\n        \"name\": Test,\r\n        \"ansprechpartner\": Herr Test,\r\n        \"dekan\": Herr Test\r\n    }],\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{rest_url}}/:id",
+              "host": [
+                "{{rest_url}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF",
+                  "uuid": "d938a5ad-c3d3-458f-bd52-bcc943aaf301"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "Über die REST-Schnittstelle vorhandene Universitaet ändern",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    }
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "rest_url",
+			"value": "{{base_url}}/rest",
+			"type": "string"
+		},
+		{
+			"key": "rest_url_http",
+			"value": "{{base_url_http}}/rest",
+			"type": "string"
+		},
+		{
+			"key": "rest_url_ingress",
+			"value": "{{base_url_ingress}}/rest",
+			"type": "string"
+		},
+		{
+			"key": "auth_url",
+			"value": "{{base_url}}/auth",
+			"type": "string"
+		}
+	]
+}
