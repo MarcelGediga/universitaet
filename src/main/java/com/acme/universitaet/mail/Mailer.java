@@ -51,7 +51,7 @@ public class Mailer {
             mimeMessage.setFrom(new InternetAddress(props.from()));
             mimeMessage.setRecipient(TO, new InternetAddress(props.sales()));
             mimeMessage.setSubject("Neue Universitaet " + neueUniversitaet.getId());
-            final var body = "<strong>Neuer Universitaet:</strong> <em>" + neueUniversitaet.getName() + "</em>";
+            final var body = "<strong>Neue Universitaet:</strong> <em>" + neueUniversitaet.getName() + "</em>";
             log.trace("send: Mailserver={}, Thread-ID={}, body={}", mailhost, Thread.currentThread().threadId(), body);
             mimeMessage.setText(body);
             mimeMessage.setHeader("Content-Type", "text/html");

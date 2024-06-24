@@ -1,9 +1,5 @@
 package com.acme.universitaet.security;
 
-import com.acme.universitaet.security.KeycloakProps;
-import com.acme.universitaet.security.KeycloakRepository;
-import com.acme.universitaet.security.LoginDTO;
-import com.acme.universitaet.security.TokenDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -16,7 +12,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.password.CompromisedPasswordChecker;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 
 import static com.acme.universitaet.security.AuthController.AUTH_PATH;

@@ -1,11 +1,17 @@
 package com.acme.universitaet.rest;
 
+import com.acme.universitaet.entity.Universitaet;
+import com.acme.universitaet.security.JwtService;
 import com.acme.universitaet.service.UniversitaetReadService;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import io.micrometer.observation.annotation.Observed;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -13,12 +19,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.LinkRelation;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import static com.acme.universitaet.rest.UniversitaetGetController.REST_PATH;
 import static org.springframework.hateoas.MediaTypes.HAL_JSON_VALUE;
+import static org.springframework.http.HttpStatus.NOT_MODIFIED;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.ResponseEntity.ok;
+import static org.springframework.http.ResponseEntity.status;
 
 /**
  * Controller für die Abfrage von Universitätsdaten.
@@ -49,38 +62,66 @@ public class UniversitaetGetController {
     public static final String ID_PATTERN = "[\\da-f]{8}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{12}";
 
     private final UniversitaetReadService service;
+    private final JwtService jwtService;
     private final UriHelper uriHelper;
 
     /**
-     * Sucht eine Universität anhand ihrer ID.
+     * Suche anhand der Universitaet-ID als Pfad-Parameter.
      *
-     * @param id Die ID der gesuchten Universität.
+     * @param id ID der zu suchenden Universitaet
+     * @param version Versionsnummer aus dem Header If-None-Match
      * @param request Das Request-Objekt, um Links für HATEOAS zu erstellen.
-     * @return Die gesuchte Universität.
+     * @param jwt JWT für Security
+     * @return Ein Response mit dem Statuscode 200 und die gefundene Universitaet mit Atom-Links oder Statuscode 404.
      */
     @GetMapping(path = "{id:" + ID_PATTERN + "}", produces = HAL_JSON_VALUE)
-    @Operation(summary = "Suche nach ID", tags = "Pfad-Suche")
+    // "Distributed Tracing" durch https://micrometer.io bei Aufruf eines anderen Microservice
+    @Observed(name = "get-by-id")
+    @Operation(summary = "Suche mit der Universitaet-ID", tags = "Suchen")
     @ApiResponse(responseCode = "200", description = "Universitaet gefunden")
     @ApiResponse(responseCode = "404", description = "Universitaet nicht gefunden")
-    UniversitaetModel getById(@PathVariable final UUID id, final HttpServletRequest request) {
-        log.debug("getById: id={}, Thread={}", id, Thread.currentThread().getName());
+    @SuppressWarnings("ReturnCount")
+    @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
+    ResponseEntity<UniversitaetModel> getById(
+        @PathVariable final UUID id,
+        @RequestHeader("If-None-Match") final Optional<String> version,
+        final HttpServletRequest request,
+        @AuthenticationPrincipal final Jwt jwt
+    ) {
+        final var username = jwtService.getUsername(jwt);
+        log.debug("getById: id={}, version={}, username={}", id, version, username);
+        // KEIN Optional https://github.com/spring-projects/spring-security/issues/3208
+        if (username == null) {
+            log.error("Trotz Spring Security wurde getById() ohne Benutzername im JWT aufgerufen");
+            return status(UNAUTHORIZED).build();
+        }
+        final var rollen = jwtService.getRollen(jwt);
+        log.trace("getById: rollen={}", rollen);
 
-        // Geschaeftslogik bzw. Anwendungskern
-        final var universitaet = service.findById(id);
+        final var universitaet = service.findById(id, username, rollen, false);
+        log.trace("getById: {}", universitaet);
 
-        // HATEOAS
+        final var currentVersion = "\"" + universitaet.getVersion() + '"';
+        if (Objects.equals(version.orElse(null), currentVersion)) {
+            return status(NOT_MODIFIED).build();
+        }
+
+        final var model = universitaetToModel(universitaet, request);
+        log.debug("getById: model={}", model);
+        return ok().eTag(currentVersion).body(model);
+    }
+
+    private UniversitaetModel universitaetToModel(final Universitaet universitaet, final HttpServletRequest request) {
         final var model = new UniversitaetModel(universitaet);
-        // evtl. Forwarding von einem API-Gateway
         final var baseUri = uriHelper.getBaseUri(request).toString();
         final var idUri = baseUri + '/' + universitaet.getId();
+
         final var selfLink = Link.of(idUri);
         final var listLink = Link.of(baseUri, LinkRelation.of("list"));
         final var addLink = Link.of(baseUri, LinkRelation.of("add"));
         final var updateLink = Link.of(idUri, LinkRelation.of("update"));
         final var removeLink = Link.of(idUri, LinkRelation.of("remove"));
         model.add(selfLink, listLink, addLink, updateLink, removeLink);
-
-        log.debug("getById: {}", model);
         return model;
     }
 
@@ -89,12 +130,12 @@ public class UniversitaetGetController {
      *
      * @param suchkriterien Query-Parameter als Map.
      * @param request Das Request-Objekt, um Links für HATEOAS zu erstellen.
-     * @return Gefundenen Universitaet als Collection.
+     * @return Ein Response mit dem Statuscode 200 und die gefundene Universitaet als CollectionModel oder Statuscode 404.
      */
     @GetMapping(produces = HAL_JSON_VALUE)
     @Operation(summary = "Suche mit Suchkriterien", tags = "Suchen")
-    @ApiResponse(responseCode = "200", description = "CollectionModel mid den Universitaeten")
-    @ApiResponse(responseCode = "404", description = "Keine Universitaeten gefunden")
+    @ApiResponse(responseCode = "200", description = "CollectionModel mid den Kunden")
+    @ApiResponse(responseCode = "404", description = "Keine Kunden gefunden")
     CollectionModel<UniversitaetModel> get(
         @RequestParam @NonNull final MultiValueMap<String, String> suchkriterien,
         final HttpServletRequest request
@@ -102,8 +143,6 @@ public class UniversitaetGetController {
         log.debug("get: suchkriterien={}", suchkriterien);
 
         final var baseUri = uriHelper.getBaseUri(request).toString();
-
-        // Geschaeftslogik bzw. Anwendungskern
         final var models = service.find(suchkriterien)
             .stream()
             .map(universitaet -> {
@@ -112,7 +151,6 @@ public class UniversitaetGetController {
                 return model;
             })
             .toList();
-
         log.debug("get: {}", models);
         return CollectionModel.of(models);
     }
@@ -130,7 +168,7 @@ public class UniversitaetGetController {
         final var namen = service.findNamenByPrefix(prefix);
         log.debug("getNamenByPrefix: {}", namen);
         return namen.stream()
-            .map(name -> STR."\"\{name}\"")
+            .map(name -> "\"" + name + '"')
             .toList()
             .toString();
     }

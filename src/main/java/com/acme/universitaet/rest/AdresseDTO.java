@@ -3,6 +3,7 @@ package com.acme.universitaet.rest;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.Builder;
 
 /**
  * ValueObject für das Neuanlegen und Ändern eines neuen Universitaet.
@@ -10,6 +11,7 @@ import jakarta.validation.constraints.Pattern;
  * @param plz Postleitzahl
  * @param ort Ort
  */
+@Builder
 record AdresseDTO(
     @NotNull
     @Pattern(regexp = PLZ_PATTERN)
