@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
-
 import static com.acme.universitaet.security.AuthController.AUTH_PATH;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE;
@@ -65,7 +64,8 @@ public class AuthController {
     @ApiResponse(responseCode = "401", description = "Fehler bei Username oder Passwort")
     Map<String, Object> me(@AuthenticationPrincipal final Jwt jwt) {
         // https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html
-        log.debug("me: isCompromised() bei Passwort 'pass1234': {}", passwordChecker.check("pass1234").isCompromised());
+        log.debug("me: isCompromised() bei Passwort 'pass1234': {}",
+            passwordChecker.check("pass1234").isCompromised());
 
         return Map.of(
             "subject", jwt.getSubject(),

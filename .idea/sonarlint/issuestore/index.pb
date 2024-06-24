@@ -226,8 +226,6 @@ w
 G.idea/sonarlint/issuestore/2/9/29413d50768046c8afd1272d49a317c0b4dd5452,a\9\a9c01e9356d28aca8ce84c090e458c79a3c87a84
 w
 G.idea/sonarlint/issuestore/0/0/00cf35b1a50dca798deb463b4fe9a4012ca111dd,5\8\585d11a2c94e65c90ee93cd615fb6223b58a3d0b
-w
-G.idea/sonarlint/issuestore/b/b/bbe9acd15077e2668de75255103ffa43f4ba4ab4,9\a\9a30a48aaf38da68222da3d548e40f84dd2190b6
 Å
 Q.idea/sonarlint/securityhotspotstore/0/5/05e8871dded9360058b869f33ce76961ecfedaef,6\0\60d136876cf26ddd5ed8868ed143bd411122024a
 L
@@ -288,8 +286,6 @@ G.idea/sonarlint/issuestore/a/f/af7fefbc4344e246bec3489fc9e95b8c023dc7f2,d\2\d2
 Q.idea/sonarlint/securityhotspotstore/8/c/8c4f1623fe286e166a36a33a67df3348db893ddf,0\1\019e6f9955abfa34dca41a180bd5b0bc90f8fbcd
 Å
 Q.idea/sonarlint/securityhotspotstore/d/8/d849e4259e4c2e4d171c0c46c8659f8dd1b84048,8\8\88fcff9c17161494535c325e2382aeaf2ed2c161
-Å
-Q.idea/sonarlint/securityhotspotstore/b/b/bbe9acd15077e2668de75255103ffa43f4ba4ab4,8\d\8d71895e4d04d01aab291dcd0ea584ce7868faaf
 Å
 Q.idea/sonarlint/securityhotspotstore/d/7/d756a0ed6dedbd10f87c1288195039ba1617e0ba,f\f\ff9b0990749ed8608abdcd4e9dcdbd0015e3f2ec
 Å
@@ -460,8 +456,6 @@ Q.idea/sonarlint/securityhotspotstore/0/a/0a04974a33685edd96ac1ea6df081c18a88556
 U
 %.mvn/wrapper/maven-wrapper.properties,3\2\32e074f71d16c1e88ac02aa83592ca6ad1fd98a8
 Å
-Q.idea/sonarlint/securityhotspotstore/8/5/85ccf5decbc12e9c7cbc4abe73552b4af706821b,3\c\3c82ff5cad37d835656d1c2832aa6ff3f01453cb
-Å
 Q.idea/sonarlint/securityhotspotstore/6/3/63307d67e0b38060fea7e78ec6b6dc1879ab1857,3\4\3409191bec1bb45cbf629a0521f5c05d97df681d
 G
 config/maven.properties,1\b\1b0d718c12dc7f26c1f93f638df9ef2329d2e5f6
@@ -479,8 +473,6 @@ G.idea/sonarlint/issuestore/f/2/f2309b736f59f9a65e9de333aa85e30b3ed6f019,9\c\9c
 Q.idea/sonarlint/securityhotspotstore/8/7/874d193500237bab888da36f0754326a8ad96692,7\3\739687b3327cc08decee0b739b7c9ac8799da688
 w
 G.idea/sonarlint/issuestore/0/a/0a04974a33685edd96ac1ea6df081c18a8855665,3\0\305cfcfed97a260f2c0c845ca700269867534080
-w
-G.idea/sonarlint/issuestore/8/5/85ccf5decbc12e9c7cbc4abe73552b4af706821b,d\9\d995d69c1ecb2db16ce7b5b59a45b1aee9b9847b
 w
 G.idea/sonarlint/issuestore/8/7/874d193500237bab888da36f0754326a8ad96692,3\a\3a4e9ae6fb2319c4320512ed46e51a546d0f981b
 Å

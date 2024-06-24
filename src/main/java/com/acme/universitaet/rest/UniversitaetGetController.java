@@ -23,8 +23,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import static com.acme.universitaet.rest.UniversitaetGetController.REST_PATH;
 import static org.springframework.hateoas.MediaTypes.HAL_JSON_VALUE;
 import static org.springframework.http.HttpStatus.NOT_MODIFIED;
@@ -130,7 +134,7 @@ public class UniversitaetGetController {
      *
      * @param suchkriterien Query-Parameter als Map.
      * @param request Das Request-Objekt, um Links für HATEOAS zu erstellen.
-     * @return Ein Response mit dem Statuscode 200 und die gefundene Universitaet als CollectionModel oder Statuscode 404.
+     * @return Ein Response mit dem Statuscode 200, die gefundene Universitaet als CollectionModel oder Statuscode 404.
      */
     @GetMapping(produces = HAL_JSON_VALUE)
     @Operation(summary = "Suche mit Suchkriterien", tags = "Suchen")

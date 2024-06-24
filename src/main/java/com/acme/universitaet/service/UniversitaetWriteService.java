@@ -44,7 +44,6 @@ public class UniversitaetWriteService {
             throw new EmailExistsException(universitaet.getEmail());
         }
 
-        // TODO Neuen Benutzer im IAM-System anlegen
         // final var login = userService.save(user); // NOSONAR
         universitaet.setUsername("user");
 

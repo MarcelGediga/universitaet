@@ -31,11 +31,14 @@ public class UniversitaetReadService {
     private final SpecificationBuilder specificationBuilder;
 
     /**
-     * Einen Universitaet anhand seiner ID suchen.
+     * Eine Universitaet anhand ihrer ID suchen.
      *
-     * @param id Die Id des gesuchten Universitaet
-     * @return Der gefundene Universitaet
-     * @throws NotFoundException        Falls kein Universitaet gefunden wurde
+     * @param id Die Id der gesuchten Universitaet
+     * @param username Benutzername aus einem JWT
+     * @param rollen Rollen als Liste von Enums
+     * @param fetchFakultaeten true, falls die Umsätze mitgeladen werden sollen
+     * @return Die gefundene Universitaet
+     * @throws NotFoundException Falls keine Universitaet gefunden wurde
      * @throws AccessForbiddenException Falls die erforderlichen Rollen nicht gegeben sind
      */
     @Observed(name = "find-by-id")
@@ -66,7 +69,8 @@ public class UniversitaetReadService {
         if (universitaet == null) {
             throw new NotFoundException(id);
         }
-        log.debug("findById: universitaet={}, fakultaet={}", universitaet, fetchFakultaeten ? universitaet.getFakultaeten() : "N/A");
+        log.debug("findById: universitaet={}, fakultaet={}",
+            universitaet, fetchFakultaeten ? universitaet.getFakultaeten() : "N/A");
         return universitaet;
     }
 

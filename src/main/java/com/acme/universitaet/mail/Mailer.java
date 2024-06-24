@@ -12,7 +12,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
 import static jakarta.mail.Message.RecipientType.TO;
 
 
@@ -60,7 +59,6 @@ public class Mailer {
         try {
             mailSender.send(preparator);
         } catch (final MailSendException | MailAuthenticationException _) {
-            // TODO Wiederholung, um die Email zu senden
             log.warn("Email nicht gesendet: Ist der Mailserver {} erreichbar?", mailhost);
         }
     }

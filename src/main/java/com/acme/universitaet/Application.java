@@ -12,7 +12,6 @@ import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
 import static com.acme.universitaet.Banner.TEXT;
 import static org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType.HAL;
 import static org.springframework.hateoas.support.WebStack.WEBMVC;
@@ -41,7 +40,6 @@ public final class Application {
      *
      * @param args Evtl. zusätzliche Argumente für den Start des Microservice
      */
-    // TODO https://github.com/checkstyle/checkstyle/issues/14444
     @SuppressWarnings({"IllegalIdentifierName", "LambdaParameterName"})
     public static void main(final String... args) {
         final var app = new SpringApplication(Application.class);

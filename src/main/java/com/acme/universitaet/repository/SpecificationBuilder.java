@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
  *
  * @author <a href="mailto:Marcel.Gediga@h-ka.de">Marcel Gediga</a>
  */
-// TODO https://github.com/checkstyle/checkstyle/issues/14444
 @Component
 @Slf4j
 @SuppressWarnings({"LambdaParameterName", "IllegalIdentifierName"})

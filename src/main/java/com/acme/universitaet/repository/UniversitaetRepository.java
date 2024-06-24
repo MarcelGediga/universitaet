@@ -11,15 +11,16 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
-
-import static com.acme.universitaet.entity.Universitaet.ADRESSE_GRAPH;
 import static com.acme.universitaet.entity.Universitaet.ADRESSE_FAKULTAETEN_GRAPH;
+import static com.acme.universitaet.entity.Universitaet.ADRESSE_GRAPH;
+
 
 /**
  * Repository für den DB-Zugriff bei Universitaet.
  */
 @Repository
-public interface UniversitaetRepository extends JpaRepository<Universitaet, UUID>, JpaSpecificationExecutor<Universitaet> {
+public interface UniversitaetRepository extends JpaRepository<Universitaet,
+    UUID>, JpaSpecificationExecutor<Universitaet> {
     @EntityGraph(ADRESSE_GRAPH)
     @NonNull
     @Override

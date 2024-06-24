@@ -5,7 +5,6 @@ import com.acme.universitaet.entity.Universitaet;
 import org.mapstruct.AnnotateWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
 import static org.mapstruct.NullValueMappingStrategy.RETURN_DEFAULT;
 
 /**
@@ -25,7 +24,6 @@ interface UniversitaetMapper {
     @Mapping(target = "version", ignore = true)
     @Mapping(target = "erzeugt", ignore = true)
     @Mapping(target = "aktualisiert", ignore = true)
-    @Mapping(target = "interessenStr", ignore = true)
     Universitaet toUniversitaet(UniversitaetDTO dto);
 
     /**

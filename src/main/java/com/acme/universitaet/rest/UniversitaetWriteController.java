@@ -20,14 +20,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import static com.acme.universitaet.rest.UniversitaetGetController.ID_PATTERN;
 import static com.acme.universitaet.rest.UniversitaetGetController.REST_PATH;
 import static org.springframework.http.HttpStatus.PRECONDITION_FAILED;
 import static org.springframework.http.HttpStatus.PRECONDITION_REQUIRED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.http.ResponseEntity.*;
+import static org.springframework.http.ResponseEntity.badRequest;
+import static org.springframework.http.ResponseEntity.created;
+import static org.springframework.http.ResponseEntity.noContent;
 
 /**
  * Eine Controller-Klasse bildet die REST-Schnittstelle, wobei die HTTP-Methoden, Pfade und MIME-Typen auf die
@@ -83,10 +90,15 @@ class UniversitaetWriteController {
     }
 
     /**
-     * Einen vorhandenen Universitaet-Datensatz überschreiben.
+     * Einen vorhandenen Kunde-Datensatz überschreiben.
      *
-     * @param id ID des zu aktualisierenden Universitaeten.
-     * @param universitaetDTO Das Universitaetenobjekt aus dem eingegangenen Request-Body.
+     * @param id ID des zu aktualisierenden Kunden.
+     * @param universitaetDTO Das Universitaetsobjekt aus dem eingegangenen Request-Body.
+     * @param version Versionsnummer aus dem Header If-Match
+     * @param request Das Request-Objekt, um ggf. die URL für ProblemDetail zu ermitteln
+     * @return Response mit Statuscode 204 oder Statuscode 400, falls der JSON-Datensatz syntaktisch nicht korrekt ist
+     *      oder 422 falls Constraints verletzt sind oder die Emailadresse bereits existiert
+     *      oder 412 falls die Versionsnummer nicht ok ist oder 428 falls die Versionsnummer fehlt.
      */
     @PutMapping(path = "{id:" + ID_PATTERN + "}", consumes = APPLICATION_JSON_VALUE)
     @Operation(summary = "Eine Universitaet mit neuen Werten aktualisieren", tags = "Aktualisieren")

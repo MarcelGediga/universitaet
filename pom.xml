@@ -98,15 +98,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.acme</groupId>
-    <artifactId>kunde</artifactId>
+    <artifactId>universitaet</artifactId>
     <version>2024.04.0</version>
     <!--
     <version>2024.04.1</version>
     -->
     <packaging>jar</packaging>
 
-    <name>kunde</name>
-    <description>Beispielprojekt fuer Softwarearchitektur</description>
+    <name>universitaet</name>
+    <description>Projekt fuer Softwarearchitektur</description>
     <url>${project.organization.url}</url>
     <inceptionYear>2016</inceptionYear>
     <organization>
@@ -131,8 +131,8 @@
     </issueManagement>
     <developers>
         <developer>
-            <name>Juergen Zimmermann</name>
-            <email>Juergen.Zimmermann@h-ka.de</email>
+            <name>Marcel Gediga</name>
+            <email>Marcel.Gediga@h-ka.de</email>
             <roles>
                 <role>Dozent</role>
             </roles>
