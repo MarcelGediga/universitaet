@@ -1,11 +1,11 @@
 package com.acme.universitaet.rest;
 
 import com.acme.universitaet.entity.Adresse;
-import com.acme.universitaet.entity.Fakultaet;
 import com.acme.universitaet.entity.Universitaet;
 import org.mapstruct.AnnotateWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+
 import static org.mapstruct.NullValueMappingStrategy.RETURN_DEFAULT;
 
 /**
@@ -36,12 +36,4 @@ interface UniversitaetMapper {
      */
     @Mapping(target = "id", ignore = true)
     Adresse toAdresse(AdresseDTO dto);
-
-    /**
-     * Ein DTO-Objekt von FakultaetDTO in ein Objekt für Fakultaet konvertieren.
-     *
-     * @param dto DTO-Objekt für FakultaetDTO ohne universitaet
-     * @return Konvertiertes Fakultaet-Objekt
-     */
-    Fakultaet toFakultaet(Fakultaet dto);
 }
