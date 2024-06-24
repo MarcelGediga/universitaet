@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.Builder;
 
@@ -38,7 +39,7 @@ record UniversitaetDTO(
     String email,
 
     @Past
-    String gruendungsdatum,
+    LocalDate gruendungsdatum,
 
     URL homepage,
 
@@ -47,7 +48,7 @@ record UniversitaetDTO(
     @NotNull(groups = OnCreate.class)
     AdresseDTO adresse,
 
-    List<FakultaetDTO> fakultaeten
+    List<FakultaetDTO> fakultaeten,
 
     String username,
     String password

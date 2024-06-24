@@ -34,6 +34,7 @@ interface UniversitaetMapper {
      * @param dto DTO-Objekt für AdresseDTO ohne universitaet
      * @return Konvertiertes Adresse-Objekt
      */
+    @Mapping(target = "id", ignore = true)
     Adresse toAdresse(AdresseDTO dto);
 
     /**

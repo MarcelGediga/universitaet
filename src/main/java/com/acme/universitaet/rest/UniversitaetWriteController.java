@@ -1,19 +1,15 @@
 package com.acme.universitaet.rest;
 
 import com.acme.universitaet.rest.UniversitaetDTO.OnCreate;
-import com.acme.universitaet.security.JwtService;
 import com.acme.universitaet.service.EmailExistsException;
-import com.acme.universitaet.service.UniversitaetReadService;
 import com.acme.universitaet.service.UniversitaetWriteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
-import jakarta.validation.Validator;
 import jakarta.validation.groups.Default;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -72,7 +68,7 @@ class UniversitaetWriteController {
     ResponseEntity<Void> post(
         @RequestBody @Validated({Default.class, OnCreate.class}) final UniversitaetDTO universitaetDTO,
         final HttpServletRequest request
-    ) throws URISyntaxException  {
+    ) {
         log.debug("post: universitaetDTO{}", universitaetDTO);
 
         if (universitaetDTO.username() == null || universitaetDTO.password() == null) {
