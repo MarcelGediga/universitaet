@@ -37,7 +37,7 @@ package com.acme.universitaet.entity #DDDDDD {
     }
 
     Universitaet *--> "0..*" Fakultaet : fakultaeten
-    Universitaet *--> "1..n" Adresse : adresse
+    Universitaet *--> "1" Adresse : adresse
 
     Universitaet ..> UUID
     Universitaet ..> LocalDate
