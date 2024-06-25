@@ -1,8 +1,6 @@
 package com.acme.universitaet;
 
 import com.acme.universitaet.dev.DevConfig;
-import com.acme.universitaet.mail.MailProps;
-import com.acme.universitaet.security.KeycloakProps;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -12,6 +10,7 @@ import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
 import static com.acme.universitaet.Banner.TEXT;
 import static org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType.HAL;
 import static org.springframework.hateoas.support.WebStack.WEBMVC;

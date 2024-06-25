@@ -18,8 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.password.HaveIBeenPwnedRestApiPasswordChecker;
-import static com.acme.universitaet.rest.UniversitaetGetController.NAME_PATH;
-import static com.acme.universitaet.rest.UniversitaetGetController.REST_PATH;
+import static com.acme.universitaet.controller.UniversitaetGetController.NAME_PATH;
+import static com.acme.universitaet.controller.UniversitaetGetController.REST_PATH;
 import static com.acme.universitaet.security.AuthController.AUTH_PATH;
 import static com.acme.universitaet.security.Rolle.ADMIN;
 import static com.acme.universitaet.security.Rolle.USER;
@@ -39,6 +39,32 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
  */
 @SuppressWarnings("TrailingComment")
 public interface SecurityConfig {
+    // https://foojay.io/today/how-to-do-password-hashing-in-java-applications-the-right-way
+    /**
+     * Salt für Argon2.
+     */
+    int SALT_LENGTH = 32; // default: 16
+    /**
+     * Hash-Länge für Argon2.
+     */
+    int HASH_LENGTH = 64; // default: 32
+    /**
+     * Parallelität für Argon2.
+     */
+    int PARALLELISM = 1; // default: 1 (Bouncy Castle kann keine Parallelitaet)
+    /**
+     * Anzahl Bits für "Memory Consumption" bei Argon2.
+     */
+    int NUMBER_OF_BITS = 14;
+    /**
+     * "Memory Consumption" in KBytes bei Argon2.
+     */
+    int MEMORY_CONSUMPTION_KBYTES = 1 << NUMBER_OF_BITS; // default: 2^14 KByte = 16 MiB  ("Memory Cost Parameter")
+    /**
+     * Anzahl Iterationen bei Argon2.
+     */
+    int ITERATIONS = 3; // default: 3
+
     /**
      * Bean-Methode zur Integration von Spring Security mit Keycloak.
      *
@@ -140,20 +166,6 @@ public interface SecurityConfig {
      */
     @Bean
     default PasswordEncoder passwordEncoder() {
-        // https://foojay.io/today/how-to-do-password-hashing-in-java-applications-the-right-way
-        // Salt für Argon2.
-        final var saltLength = 32; // default: 16
-        // Hash-Länge für Argon2.
-        final var hashLength = 64; // default: 32
-        // Parallelität für Argon2.
-        final var parallelism = 1; // default: 1 (Bouncy Castle kann keine Parallelitaet)
-        // Anzahl Bits für "Memory Consumption" bei Argon2.
-        final var numberOfBits = 14;
-        // "Memory Consumption" in KBytes bei Argon2.
-        final var memoryConsumptionKbytes = 1 << numberOfBits; // default: 2^14 KByte = 16 MiB ("Memory Cost Parameter")
-        // Anzahl Iterationen bei Argon2.
-        final var iterations = 3; // default: 3
-
         // https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html
         // https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Password_Storage_Cheat_Sheet.md
         // https://www.rfc-editor.org/rfc/rfc9106.html
@@ -161,11 +173,11 @@ public interface SecurityConfig {
         final Map<String, PasswordEncoder> encoders = Map.of(
             idForEncode,
             new Argon2PasswordEncoder(
-                saltLength,
-                hashLength,
-                parallelism,
-                memoryConsumptionKbytes,
-                iterations
+                SALT_LENGTH,
+                HASH_LENGTH,
+                PARALLELISM,
+                MEMORY_CONSUMPTION_KBYTES,
+                ITERATIONS
             )
         );
         return new DelegatingPasswordEncoder(idForEncode, encoders);

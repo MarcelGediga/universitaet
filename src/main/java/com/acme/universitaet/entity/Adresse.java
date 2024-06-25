@@ -14,6 +14,8 @@ import lombok.ToString;
 
 /**
  * Repräsentiert eine Adresse.
+ *
+ * @author <a href="mailto:Marcel.Gediga@h-ka.de">Marcel Gediga</a>
  */
 @Entity
 @Table(name = "adresse")
@@ -23,12 +25,9 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-@SuppressWarnings({"JavadocDeclaration", "RequireEmptyLineBeforeBlockTagGroup", "MissingSummary"})
 public class Adresse {
     @Id
     @GeneratedValue
-    // Oracle: https://in.relation.to/2022/05/12/orm-uuid-mapping
-    // @org.hibernate.annotations.JdbcTypeCode(org.hibernate.type.SqlTypes.CHAR)
     private UUID id;
 
     /**

@@ -402,18 +402,18 @@ Projekt "bestellung" ebenfalls ein Docker-Image erstellen.
     .\mvnw spring-boot:build-image -D'maven.test.skip=true'
 
     # Azul Zulu mit Ubuntu Jammy (2022.04) als Basis-Image
-    docker build --tag=juergenzimmermann/universitaet:2024.04.0-azul .
+    docker build --tag=marcelgediga/universitaet:2024.04.0-azul .
     # Eclipse Temurin mit Ubuntu Jammy (2022.04) als Basis-Image
-    docker build --tag=juergenzimmermann/universitaet:2024.04.0-eclipse --file=Dockerfile.eclipse .
+    docker build --tag=marcelgediga/universitaet:2024.04.0-eclipse --file=Dockerfile.eclipse .
 ```
 
 Mit dem Unterkommando `inspect` von docker kann man die Metadaten, z.B. Labels,
 zu einem Image inspizieren:
 
 ```powershell
-    docker inspect juergenzimmermann/universitaet:2024.04.1-buildpacks
-    docker inspect juergenzimmermann/universitaet:2024.04.1-azul
-    docker inspect juergenzimmermann/universitaet:2024.04.1-eclipse
+    docker inspect marcelgediga/universitaet:2024.04.1-buildpacks
+    docker inspect marcelgediga/universitaet:2024.04.1-azul
+    docker inspect marcelgediga/universitaet:2024.04.1-eclipse
 ```
 
 Mit _dive_ kann man dann ein Docker-Image und die einzelnen Layer inspizieren:
@@ -895,7 +895,7 @@ groben Überblick verschaffen, wieviele Sicherheitslücken in den Bibliotheken i
 Image enthalten sind:
 
 ```powershell
-    docker scout quickview juergenzimmermann/universitaet:2024.04.1-buildpacks
+    docker scout quickview marcelgediga/universitaet:2024.04.1-buildpacks
 ```
 
 Dabei bedeutet:
@@ -913,20 +913,20 @@ von _Scout_ auflisten:
 
 ```powershell
     # Analyse des Images mit Cloud-Native Buildpacks
-    docker scout cves juergenzimmermann/universitaet:2024.04.1-buildpacks
-    docker scout cves --format only-packages juergenzimmermann/universitaet:2024.04.1-buildpacks
+    docker scout cves marcelgediga/universitaet:2024.04.1-buildpacks
+    docker scout cves --format only-packages marcelgediga/universitaet:2024.04.1-buildpacks
 
     # Analyse des Images mit Azul Zulu und Ubuntu Jammy
-    docker scout cves juergenzimmermann/universitaet:2024.04.1-azul
+    docker scout cves marcelgediga/universitaet:2024.04.1-azul
 
     # Analyse des Images mit Eclipse Temurin und Ubuntu Jammy
-    docker scout cves juergenzimmermann/universitaet:2024.04.1-eclipse
+    docker scout cves marcelgediga/universitaet:2024.04.1-eclipse
 
     # Analyse des Images mit Cloud-Native Buildpacks sowie Azul Zulu und Ubuntu Jammy
-    docker scout cves juergenzimmermann/universitaet:2024.04.1-buildpacks-azul
+    docker scout cves marcelgediga/universitaet:2024.04.1-buildpacks-azul
 
     # Analyse des Images mit Cloud-Native Buildpacks sowie Eclipse Temurin und Ubuntu Jammy
-    docker scout cves juergenzimmermann/universitaet:2024.04.1-buildpacks-eclipse
+    docker scout cves marcelgediga/universitaet:2024.04.1-buildpacks-eclipse
 ````
 
 Statt der Kommandozeile kann man auch den Menüpunkt "Docker Scout" im

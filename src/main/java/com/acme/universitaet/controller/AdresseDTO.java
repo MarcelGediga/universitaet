@@ -1,4 +1,4 @@
-package com.acme.universitaet.rest;
+package com.acme.universitaet.controller;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +8,7 @@ import lombok.Builder;
 /**
  * ValueObject für das Neuanlegen und Ändern eines neuen Universitaet.
  *
+ * @author <a href="mailto:Marcel.Gediga@h-ka.de">Marcel Gediga</a>
  * @param plz Postleitzahl
  * @param ort Ort
  */

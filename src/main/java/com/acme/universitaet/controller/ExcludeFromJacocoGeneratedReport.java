@@ -1,4 +1,4 @@
-package com.acme.universitaet.rest;
+package com.acme.universitaet.controller;
 
 import java.lang.annotation.Retention;
 import static java.lang.annotation.RetentionPolicy.CLASS;

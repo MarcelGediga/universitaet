@@ -1,12 +1,12 @@
 package com.acme.universitaet.security;
 
+import com.acme.universitaet.KeycloakProps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.support.RestClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
-import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  * Konfiguration für einen Spring-HTTP-Client für Keycloak.
@@ -20,20 +20,15 @@ public interface KeycloakClientConfig {
     /**
      * Bean-Methode, um ein Objekt zum Interface KeycloakRepository zu erstellen.
      *
-     * @param clientBuilder Injiziertes Objekt vom Typ RestClient.Builder
-     * @param keycloak Spring-Properties für Keycloak
+     * @param restClientBuilder Injiziertes Objekt vom Typ RestClient.Builder
      * @return Objekt zum Interface KeycloakRepository
      */
     @Bean
-    default KeycloakRepository keycloakRepository(final RestClient.Builder clientBuilder, KeycloakProps keycloak) {
-        final var baseUri = UriComponentsBuilder.newInstance()
-            .scheme(keycloak.schema())
-            .host(keycloak.host())
-            .port(keycloak.port())
-            .build();
-        LOGGER.debug("keycloakRepository: baseUri={}", baseUri);
+    default KeycloakRepository keycloakRepository(final RestClient.Builder restClientBuilder, KeycloakProps props) {
+        final var baseUrl = props.schema() + "://" + props.host() + ":" + props.port();
+        LOGGER.debug("tokenRepository: baseUrl={}", baseUrl);
 
-        final var restClient = clientBuilder.baseUrl(baseUri.toUriString()).build();
+        final var restClient = restClientBuilder.baseUrl(baseUrl).build();
         final var clientAdapter = RestClientAdapter.create(restClient);
         final var proxyFactory = HttpServiceProxyFactory.builderFor(clientAdapter).build();
         return proxyFactory.createClient(KeycloakRepository.class);

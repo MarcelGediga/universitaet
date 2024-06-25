@@ -1,6 +1,5 @@
 package com.acme.universitaet.repository;
 
-
 import com.acme.universitaet.entity.Adresse_;
 import com.acme.universitaet.entity.Universitaet;
 import com.acme.universitaet.entity.Universitaet_;
@@ -68,10 +67,6 @@ public class SpecificationBuilder {
     }
 
     private Specification<Universitaet> name(final String teil) {
-        // root ist jakarta.persistence.criteria.Root<Universitaet>
-        // query ist jakarta.persistence.criteria.CriteriaQuery<Universitaet>
-        // builder ist jakarta.persistence.criteria.CriteriaBuilder
-        // https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/meta-model.html
         return (root, _, builder) -> builder.like(
             builder.lower(root.get(Universitaet_.name)),
             builder.lower(builder.literal("%" + teil + '%'))

@@ -26,6 +26,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
+import static org.springframework.context.annotation.Bean.Bootstrap.BACKGROUND;
+
 /**
  * Beim ApplicationReadyEvent werden Informationen für die Entwickler/innen im Hinblick auf Security (-Algorithmen)
  * protokolliert. Da es viele Algorithmen gibt und die Ausgabe lang wird, wird diese Funktionalität nur mit dem
@@ -40,7 +42,7 @@ public interface LogSignatureAlgorithms {
      *
      * @return Listener für die Ausgabe der Signature-Algorithmen
      */
-    @Bean
+    @Bean(bootstrap = BACKGROUND)
     @Profile("logSecurity")
     @SuppressWarnings("LambdaBodyLength")
     default ApplicationListener<ApplicationReadyEvent> logSignatureAlgorithms() {

@@ -56,14 +56,10 @@
         <module name="CatchParameterName"/>
         <module name="ClassTypeParameterName"/>
 		<module name="ConstantName"/>
-        <!-- TODO https://github.com/checkstyle/checkstyle/pull/14025 https://github.com/checkstyle/checkstyle/issues/14195 -->
-        <!-- <module name="IllegalIdentifierName"/> -->
         <module name="IllegalIdentifierName">
             <property name="format" value="(?i)^(?!(record|yield|var|permits|sealed)$).+$|^(?!(record|yield|var|permits|sealed|_)$).+$"/>
         </module>
         <module name="InterfaceTypeParameterName"/>
-        <!-- TODO https://github.com/checkstyle/checkstyle/pull/14025 https://github.com/checkstyle/checkstyle/issues/14195 -->
-        <!-- <module name="LambdaParameterName"/> -->
         <module name="LambdaParameterName">
             <property name="format" value="^(_|[a-z][a-zA-Z]*)$"/>
         </module>
@@ -82,14 +78,6 @@
 
 		<!-- https://checkstyle.sourceforge.io/checks/imports -->
 		<module name="AvoidStarImport"/>
-        <!--
-        <module name="CustomImportOrder">
-            <property name="customImportOrderRules" value="THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE###STATIC"/>
-            <property name="sortImportsInGroupAlphabetically" value="true"/>
-            <property name="standardPackageRegExp" value="^(java|javax)\."/>
-            <property name="separateLineBetweenGroups" value="true"/>
-        </module>
-        -->
 		<module name="IllegalImport"/>
         <module name="ImportOrder"/>
 		<module name="RedundantImport"/>
@@ -122,7 +110,6 @@
         <!-- https://checkstyle.sourceforge.io/checks/metrics -->
         <module name="BooleanExpressionComplexity"/>
         <module name="ClassDataAbstractionCoupling"/>
-        <module name="ClassFanOutComplexity"/>
         <module name="CyclomaticComplexity"/>
         <module name="JavaNCSS"/>
         <module name="NPathComplexity"/>
@@ -188,7 +175,6 @@
 
 		<!-- https://checkstyle.sourceforge.io/checks/annotation -->
         <module name="AnnotationLocation"/>
-        <!-- <module name="AnnotationOnSameLine"/> -->
 		<module name="AnnotationUseStyle"/>
 		<module name="MissingDeprecated"/>
 		<module name="MissingOverride"/>
@@ -259,7 +245,6 @@
 		<!-- https://checkstyle.sourceforge.io/checks/design -->
         <module name="FinalClass"/>
 		<module name="HideUtilityClassConstructor"/>
-        <!-- <module name="InnerTypeLast"/> -->
 		<module name="InterfaceIsType"/>
         <module name="MutableException"/>
         <module name="OneTopLevelClass"/>

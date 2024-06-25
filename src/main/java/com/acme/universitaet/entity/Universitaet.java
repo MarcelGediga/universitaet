@@ -33,6 +33,8 @@ import static jakarta.persistence.FetchType.LAZY;
 
 /**
  * Repräsentiert eine Universität.
+ *
+ * @author <a href="mailto:Marcel.Gediga@h-ka.de">Marcel Gediga</a>
  */
 @Entity
 @Table(name = "universitaet")
@@ -47,15 +49,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @Setter
 @ToString
 @Builder
-@SuppressWarnings({
-    "ClassFanOutComplexity",
-    "RequireEmptyLineBeforeBlockTagGroup",
-    "DeclarationOrder",
-    "JavadocDeclaration",
-    "MissingSummary",
-    "RedundantSuppression", "com.intellij.jpb.LombokEqualsAndHashCodeInspection"})
 public class Universitaet {
-
     /**
      * NamedEntityGraph für das Attribut "adresse".
      */
@@ -132,13 +126,9 @@ public class Universitaet {
 
     private String username;
 
-    // https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html...
-    // ...#mapping-generated-CreationTimestamp
     @CreationTimestamp
     private LocalDateTime erzeugt;
 
-    // https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html...
-    // ...#mapping-generated-UpdateTimestamp
     @UpdateTimestamp
     private LocalDateTime aktualisiert;
 

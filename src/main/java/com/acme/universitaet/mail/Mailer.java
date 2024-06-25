@@ -1,5 +1,6 @@
 package com.acme.universitaet.mail;
 
+import com.acme.universitaet.MailProps;
 import com.acme.universitaet.entity.Universitaet;
 import jakarta.mail.internet.InternetAddress;
 import java.util.Objects;

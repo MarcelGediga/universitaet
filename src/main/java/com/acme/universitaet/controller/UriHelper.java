@@ -14,14 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.acme.universitaet.rest;
+package com.acme.universitaet.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.net.URI;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import static com.acme.universitaet.rest.UniversitaetGetController.REST_PATH;
+import static com.acme.universitaet.controller.UniversitaetGetController.REST_PATH;
 
 /**
  * Hilfsklasse um URIs für HATEOAS oder für URIs in ProblemDetail zu ermitteln, falls ein API-Gateway verwendet wird.

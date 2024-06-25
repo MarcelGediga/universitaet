@@ -1,6 +1,6 @@
-package com.acme.universitaet.rest;
+package com.acme.universitaet.controller;
 
-import com.acme.universitaet.rest.UniversitaetDTO.OnCreate;
+import com.acme.universitaet.controller.UniversitaetDTO.OnCreate;
 import com.acme.universitaet.service.EmailExistsException;
 import com.acme.universitaet.service.UniversitaetWriteService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +10,7 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 import jakarta.validation.groups.Default;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +28,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import static com.acme.universitaet.rest.UniversitaetGetController.ID_PATTERN;
-import static com.acme.universitaet.rest.UniversitaetGetController.REST_PATH;
+import static com.acme.universitaet.controller.UniversitaetGetController.ID_PATTERN;
+import static com.acme.universitaet.controller.UniversitaetGetController.REST_PATH;
 import static org.springframework.http.HttpStatus.PRECONDITION_FAILED;
 import static org.springframework.http.HttpStatus.PRECONDITION_REQUIRED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -50,6 +51,10 @@ import static org.springframework.http.ResponseEntity.noContent;
 @Slf4j
 @SuppressWarnings({"ClassFanOutComplexity", "java:S1075", "preview", "java:S6856"})
 class UniversitaetWriteController {
+    /**
+     * Basispfad für "type" innerhalb von ProblemDetail.
+     */
+    @SuppressWarnings("TrailingComment")
     static final String PROBLEM_PATH = "/problem/";
 
     private static final String VERSIONSNUMMER_FEHLT = "Versionsnummer fehlt";
@@ -72,10 +77,11 @@ class UniversitaetWriteController {
     @ApiResponse(responseCode = "201", description = "Universitaet neu angelegt")
     @ApiResponse(responseCode = "400", description = "Syntaktische Fehler im Request-Body")
     @ApiResponse(responseCode = "422", description = "Ungültige Werte oder Email vorhanden")
+    @SuppressWarnings("TrailingComment")
     ResponseEntity<Void> post(
         @RequestBody @Validated({Default.class, OnCreate.class}) final UniversitaetDTO universitaetDTO,
         final HttpServletRequest request
-    ) {
+    ) throws URISyntaxException {
         log.debug("post: universitaetDTO{}", universitaetDTO);
 
         if (universitaetDTO.username() == null || universitaetDTO.password() == null) {

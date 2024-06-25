@@ -17,7 +17,7 @@
 #                                       $env:TAG = '2024.04.1-buildpacks'
 #           skaffold dev
 #           skaffold delete
-#           docker tag juergenzimmermann/universitaet:2024.04.1 juergenzimmermann/universitaet:latest
+#           docker tag marcelgediga/universitaet:2024.04.1 marcelgediga/universitaet:latest
 
 # https://skaffold.dev/docs/references/yaml
 # https://skaffold-latest.firebaseapp.com/docs/references/yaml
@@ -30,7 +30,7 @@ metadata:
 # https://skaffold.dev/docs/pipeline-stages/builders
 build:
   artifacts:
-    - image: juergenzimmermann/universitaet
+    - image: marcelgediga/universitaet
       # https://skaffold.dev/docs/pipeline-stages/builders/buildpacks
       # https://paketo.io/docs/howto/java
       # https://www.youtube.com/watch?v=aI19ZYV4-7o

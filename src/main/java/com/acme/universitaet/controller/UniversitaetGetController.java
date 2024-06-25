@@ -1,4 +1,4 @@
-package com.acme.universitaet.rest;
+package com.acme.universitaet.controller;
 
 import com.acme.universitaet.entity.Universitaet;
 import com.acme.universitaet.security.JwtService;
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import static com.acme.universitaet.rest.UniversitaetGetController.REST_PATH;
+import static com.acme.universitaet.controller.UniversitaetGetController.REST_PATH;
 import static org.springframework.hateoas.MediaTypes.HAL_JSON_VALUE;
 import static org.springframework.http.HttpStatus.NOT_MODIFIED;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;

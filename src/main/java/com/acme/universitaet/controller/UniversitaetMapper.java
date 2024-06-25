@@ -1,4 +1,4 @@
-package com.acme.universitaet.rest;
+package com.acme.universitaet.controller;
 
 import com.acme.universitaet.entity.Adresse;
 import com.acme.universitaet.entity.Universitaet;
@@ -10,9 +10,11 @@ import static org.mapstruct.NullValueMappingStrategy.RETURN_DEFAULT;
 /**
  * Mapper zwischen Entity-Klassen.
  * Siehe build\generated\sources\annotationProcessor\java\main\...\UniversitaetMapperImpl.java.
+ *
+ * @author <a href="mailto:Marcel.Gediga@h-ka.de">Marcel Gediga</a>
  */
 @Mapper(nullValueIterableMappingStrategy = RETURN_DEFAULT, componentModel = "spring")
-@AnnotateWith(com.acme.universitaet.rest.ExcludeFromJacocoGeneratedReport.class)
+@AnnotateWith(ExcludeFromJacocoGeneratedReport.class)
 interface UniversitaetMapper {
     /**
      * Ein DTO-Objekt von UniversitaetDTO in ein Objekt für Universitaet konvertieren.

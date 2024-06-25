@@ -18,7 +18,6 @@ package com.acme.universitaet.dev;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
-import static org.springframework.context.annotation.Bean.Bootstrap.BACKGROUND;
 
 /**
  * WebFilter zur Protokollierung des Request-Headers.
@@ -31,7 +30,7 @@ interface LogRequestHeaders {
      *
      * @return CommonsRequestLoggingFilter, der den Request-Header protokolliert.
      */
-    @Bean(bootstrap = BACKGROUND)
+    @Bean
     default CommonsRequestLoggingFilter logFilter() {
         // https://www.baeldung.com/spring-http-logging
         // https://stackoverflow.com/questions/33744875...

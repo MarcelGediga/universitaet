@@ -1,5 +1,6 @@
-package com.acme.universitaet.rest;
+package com.acme.universitaet.controller;
 
+import jakarta.persistence.Column;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -16,6 +17,7 @@ import lombok.Builder;
  * Beim Lesen wird die Klasse UniversitaetModel für die Ausgabe
  * verwendet.
  *
+ * @author <a href="mailto:Marcel.Gediga@h-ka.de">Marcel Gediga</a>
  * @param name Gültiger Name einer Universitaet, d.h. mit einem geeigneten Muster.
  * @param email Email einer Universitaet.
  * @param gruendungsdatum Das Gruendungsdatum einer Universitaet.
@@ -29,18 +31,20 @@ import lombok.Builder;
 @SuppressWarnings("RecordComponentNumber")
 record UniversitaetDTO(
 
-    @NotNull
+    @NotNull(message = "Der Namen fehlt")
     @Pattern(regexp = NAME_PATTERN)
     String name,
 
     @Email
-    @NotNull
+    @NotNull(message = "Die Email fehlt")
     @Size(max = EMAIL_MAX_LENGTH)
     String email,
 
     @Past
+    @NotNull
     LocalDate gruendungsdatum,
 
+    @Column(length = HOMEPAGE_MAX_LAENGE)
     URL homepage,
 
     @Valid
@@ -65,4 +69,5 @@ record UniversitaetDTO(
         "(o'|von|von der|von und zu|van)?[A-ZÄÖÜ][a-zäöüß]+(-[A-ZÄÖÜ][a-zäöüß]+)?";
 
     private static final int EMAIL_MAX_LENGTH = 40;
+    private static final int HOMEPAGE_MAX_LAENGE = 40;
 }

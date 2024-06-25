@@ -1,4 +1,4 @@
-package com.acme.universitaet.rest;
+package com.acme.universitaet.controller;
 
 import com.acme.universitaet.service.AccessForbiddenException;
 import com.acme.universitaet.service.NotFoundException;
@@ -11,6 +11,8 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 /**
  * Handler für allgemeine Exceptions.
+ *
+ * @author <a href="mailto:Marcel.Gediga@h-ka.de">Marcel Gediga</a>
  */
 @ControllerAdvice
 @Slf4j
