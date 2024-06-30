@@ -33,6 +33,7 @@ public class Fakultaet {
 
     /**
      * Der Name der Fakultät.
+     *
      * @param name Der Name.
      * @return Der Name.
      */
@@ -40,6 +41,7 @@ public class Fakultaet {
 
     /**
      * Der Ansprechpartener der Fakultät.
+     *
      * @param ansprechpartener Der Ansprechpartener.
      * @return Der Ansprechpartener.
      */
@@ -47,6 +49,7 @@ public class Fakultaet {
 
     /**
      * Der Dekan der Fakultät.
+     *
      * @param dekan Der Dekan.
      * @return Der Dekan.
      */

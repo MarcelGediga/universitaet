@@ -21,6 +21,7 @@ public interface KeycloakClientConfig {
      * Bean-Methode, um ein Objekt zum Interface KeycloakRepository zu erstellen.
      *
      * @param restClientBuilder Injiziertes Objekt vom Typ RestClient.Builder
+     * @param props Props
      * @return Objekt zum Interface KeycloakRepository
      */
     @Bean

@@ -96,9 +96,9 @@ class UniversitaetWriteController {
     }
 
     /**
-     * Einen vorhandenen Kunde-Datensatz überschreiben.
+     * Einen vorhandenen Universitaet-Datensatz überschreiben.
      *
-     * @param id ID des zu aktualisierenden Kunden.
+     * @param id ID des zu aktualisierenden Universitaetenn.
      * @param universitaetDTO Das Universitaetsobjekt aus dem eingegangenen Request-Body.
      * @param version Versionsnummer aus dem Header If-Match
      * @param request Das Request-Objekt, um ggf. die URL für ProblemDetail zu ermitteln
@@ -110,7 +110,7 @@ class UniversitaetWriteController {
     @Operation(summary = "Eine Universitaet mit neuen Werten aktualisieren", tags = "Aktualisieren")
     @ApiResponse(responseCode = "204", description = "Aktualisiert")
     @ApiResponse(responseCode = "400", description = "Syntaktische Fehler im Request-Body")
-    @ApiResponse(responseCode = "404", description = "Kunde nicht vorhanden")
+    @ApiResponse(responseCode = "404", description = "Universitaet nicht vorhanden")
     @ApiResponse(responseCode = "412", description = "Versionsnummer falsch")
     @ApiResponse(responseCode = "422", description = "Ungültige Werte oder Email vorhanden")
     @ApiResponse(responseCode = "428", description = VERSIONSNUMMER_FEHLT)

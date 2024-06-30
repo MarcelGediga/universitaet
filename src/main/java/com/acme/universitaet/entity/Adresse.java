@@ -32,6 +32,7 @@ public class Adresse {
 
     /**
      * Die Postleitzahl für die Adresse.
+     *
      * @param plz Die Postleitzahl als String
      * @return Die Postleitzahl als String
      */
@@ -39,6 +40,7 @@ public class Adresse {
 
     /**
      * Der Ort für die Adresse.
+     *
      * @param ort Der Ort als String
      * @return Der Ort als String
      */

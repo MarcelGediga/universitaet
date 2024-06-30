@@ -138,8 +138,8 @@ public class UniversitaetGetController {
      */
     @GetMapping(produces = HAL_JSON_VALUE)
     @Operation(summary = "Suche mit Suchkriterien", tags = "Suchen")
-    @ApiResponse(responseCode = "200", description = "CollectionModel mid den Kunden")
-    @ApiResponse(responseCode = "404", description = "Keine Kunden gefunden")
+    @ApiResponse(responseCode = "200", description = "CollectionModel mid den Universitaetn")
+    @ApiResponse(responseCode = "404", description = "Keine Universitaetn gefunden")
     CollectionModel<UniversitaetModel> get(
         @RequestParam @NonNull final MultiValueMap<String, String> suchkriterien,
         final HttpServletRequest request

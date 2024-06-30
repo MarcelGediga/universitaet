@@ -62,6 +62,7 @@ public class Universitaet {
 
     /**
      * Die ID der Universität.
+     *
      * @param id Die ID.
      * @return Die ID.
      */
@@ -78,6 +79,7 @@ public class Universitaet {
 
     /**
      * Der Name der Universität.
+     *
      * @param name Der Name.
      * @return Der Name.
      */
@@ -85,6 +87,7 @@ public class Universitaet {
 
     /**
      * Die Emailadresse der Universität.
+     *
      * @param email Die Emailadresse.
      * @return Die Emailadresse.
      */
@@ -92,6 +95,7 @@ public class Universitaet {
 
     /**
      * Das Gründungsdatum der Universität.
+     *
      * @param gruendungsdatum Das Gründungsdatum.
      * @return Das Gründungsdatum.
      */
@@ -99,6 +103,7 @@ public class Universitaet {
 
     /**
      * Die URL zur Homepage der Universität.
+     *
      * @param homepage Die URL zur Homepage.
      * @return Die URL zur Homepage.
      */
@@ -106,6 +111,7 @@ public class Universitaet {
 
     /**
      * Die Adresse der Universität.
+     *
      * @param adresse Die Adresse.
      * @return Die Adresse.
      */
@@ -115,6 +121,7 @@ public class Universitaet {
 
     /**
      * Die Fakultäten der Universität.
+     *
      * @param fakultaeten Die Fakultäten.
      * @return Die Fakultäten.
      */

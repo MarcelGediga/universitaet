@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Copyright (C) 2023 - present Juergen Zimmermann, Hochschule Karlsruhe
+    Copyright (C) 2023 - present Marcel Zimmermann, Hochschule Karlsruhe
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,9 +34,9 @@
 
     2) Microservice als selbstausfuehrendes JAR oder Docker-Image erstellen und ausfuehren
         .\mvnw package spring-boot:repackage -D'maven.test.skip=true' -D'spring-boot.build-image.skip=true'
-            -> ${project.build.directory}/kunde-...jar-> target/kunde-...jar
+            -> ${project.build.directory}/universitaet-...jar-> target/universitaet-...jar
 
-            java -\-enable-preview -jar .\target\kunde-...jar `
+            java -\-enable-preview -jar .\target\universitaet-...jar `
                 -\-spring.profiles.active=dev `
                 -\-spring.ssl.bundle.pem.microservice.keystore.private-key=src/main/resources/private-key.pem `
                 -\-spring.ssl.bundle.pem.microservice.keystore.certificate=src/main/resources/certificate.crt `
@@ -106,7 +106,7 @@
     <packaging>jar</packaging>
 
     <name>universitaet</name>
-    <description>Projekt fuer Softwarearchitektur</description>
+    <description>Beispielprojekt fuer Softwarearchitektur</description>
     <url>${project.organization.url}</url>
     <inceptionYear>2016</inceptionYear>
     <organization>
@@ -120,14 +120,14 @@
         </license>
     </licenses>
     <scm>
-        <developerConnection>scm:git:https://github.com/acme/kunde.git</developerConnection>
-        <connection>scm:git:https://github.com/acme/kunde.git</connection>
-        <url>https://github.com/acme/kunde</url>
+        <developerConnection>scm:git:https://github.com/acme/universitaet.git</developerConnection>
+        <connection>scm:git:https://github.com/acme/universitaet.git</connection>
+        <url>https://github.com/acme/universitaet</url>
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/acme/kunde/issues</url>
+        <url>https://github.com/acme/universitaet/issues</url>
     </issueManagement>
     <developers>
         <developer>
@@ -1063,7 +1063,7 @@
                         <!-- siehe ${project.build.directory}/generated-sources/annotations -->
                         <!-- https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#tooling-modelgen -->
                         <!-- https://docs.jboss.org/hibernate/orm/current/introduction/html_single/Hibernate_Introduction.html#generator -->
-                        <!-- build\generated\sources\annotationProcessor\java\main\com.acme.kunde\entity\Kunde_.java -->
+                        <!-- build\generated\sources\annotationProcessor\java\main\com.acme.universitaet\entity\Universitaet_.java -->
                         <path>
                             <groupId>org.hibernate.orm</groupId>
                             <artifactId>hibernate-processor</artifactId>
