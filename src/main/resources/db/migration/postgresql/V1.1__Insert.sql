@@ -1,40 +1,24 @@
--- Copyright (C) 2022 - present Marcel Gediga, Hochschule Karlsruhe
---
--- This program is free software: you can redistribute it and/or modify
--- it under the terms of the GNU General Public License as published by
--- the Free Software Foundation, either version 3 of the License, or
--- (at your option) any later version.
---
--- This program is distributed in the hope that it will be useful,
--- but WITHOUT ANY WARRANTY; without even the implied warranty of
--- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--- GNU General Public License for more details.
---
--- You should have received a copy of the GNU General Public License
--- along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-- INSERT INTO login
+INSERT INTO login (id, username, password, rollen)
+VALUES
+    ('30000000-0000-0000-0000-000000000000', 'admin', '{argon2id}$argon2id$v=19$m=16384,t=3,p=1$QHb5SxDhddjUiGboXTc9S9yCmRoPsBejIvW/dw50DKg$WXZDFJowwMX5xsOun2BT2R3hv2aA9TSpnx3hZ3px59sTW0ObtqBwX7Sem6ACdpycArUHfxmFfv9Z49e7I+TI/g', 'ADMIN,USER,ACTUATOR'),
+    ('30000000-0000-0000-0000-000000000001', 'user', '{argon2id}$argon2id$v=19$m=16384,t=3,p=1$QHb5SxDhddjUiGboXTc9S9yCmRoPsBejIvW/dw50DKg$WXZDFJowwMX5xsOun2BT2R3hv2aA9TSpnx3hZ3px59sTW0ObtqBwX7Sem6ACdpycArUHfxmFfv9Z49e7I+TI/g', 'USER');
 
---  docker compose exec postgres bash
---  psql --dbname=universitaet --username=universitaet [--file=/sql/V1.1__Insert.sql]
-
--- COPY mit CSV-Dateien erfordert den Pfad src/main/resources/...
--- Dieser Pfad existiert aber nicht im Docker-Image
--- https://www.postgresql.org/docs/current/sql-copy.html
-
--- Insert addresses
+-- INSERT INTO adresse
 INSERT INTO adresse (id, plz, ort)
 VALUES
-    ('20000000-0000-0000-0000-000000000000', '12345', 'Stadt A'),
-    ('20000000-0000-0000-0000-000000000001', '23456', 'Stadt B'),
-    ('20000000-0000-0000-0000-000000000002', '34567', 'Stadt C');
+    ('20000000-0000-0000-0000-000000000000', '12345', 'Karlsruhe'),
+    ('20000000-0000-0000-0000-000000000001', '23456', 'Rastatt'),
+    ('20000000-0000-0000-0000-000000000002', '34567', 'Berlin');
 
--- Insert universities
-INSERT INTO universitaet (id, version, name, email, gruendungsdatum, homepage, adresse_id, erzeugt, aktualisiert)
+-- Insert INTO universities
+INSERT INTO universitaet (id, version, name, email, gruendungsdatum, homepage, adresse_id, erzeugt, aktualisiert, username)
 VALUES
-    ('00000000-0000-0000-0000-000000000000', 0, 'Universität A', 'uni_a@example.com', '1950-01-01', 'https://www.uni-a.example.com', '20000000-0000-0000-0000-000000000000', '2024-05-27 00:00:00', '2024-05-27 00:00:00'),
-    ('00000000-0000-0000-0000-000000000001', 0, 'Universität B', 'uni_b@example.com', '1960-01-01', 'https://www.uni-b.example.com', '20000000-0000-0000-0000-000000000001', '2024-05-27 00:00:00', '2024-05-27 00:00:00'),
-    ('00000000-0000-0000-0000-000000000002', 0, 'Universität C', 'uni_c@example.com', '1970-01-01', 'https://www.uni-c.example.com', '20000000-0000-0000-0000-000000000002', '2024-05-27 00:00:00', '2024-05-27 00:00:00');
+    ('00000000-0000-0000-0000-000000000000', 0, 'Universit├ñt A', 'uni_a@example.com', '1950-01-01', 'https://www.uni-a.example.com', '20000000-0000-0000-0000-000000000000', '2024-05-27 00:00:00', '2024-05-27 00:00:00', 'admin'),
+    ('00000000-0000-0000-0000-000000000001', 0, 'Universit├ñt B', 'uni_b@example.com', '1960-01-01', 'https://www.uni-b.example.com', '20000000-0000-0000-0000-000000000001', '2024-05-27 00:00:00', '2024-05-27 00:00:00', 'user'),
+    ('00000000-0000-0000-0000-000000000002', 0, 'Universit├ñt C', 'uni_c@example.com', '1970-01-01', 'https://www.uni-c.example.com', '20000000-0000-0000-0000-000000000002', '2024-05-27 00:00:00', '2024-05-27 00:00:00', 'user');
 
--- Insert faculties
+-- INSERT INTO fakultaet
 INSERT INTO fakultaet (id, name, ansprechpartner, dekan, universitaet_id)
 VALUES
     ('10000000-0000-0000-0000-000000000000', 'Informatik', 'Prof. Schmidt', 'Prof. Müller', '00000000-0000-0000-0000-000000000000'),

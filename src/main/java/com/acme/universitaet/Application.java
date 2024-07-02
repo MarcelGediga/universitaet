@@ -1,6 +1,8 @@
 package com.acme.universitaet;
 
 import com.acme.universitaet.dev.DevConfig;
+import com.acme.universitaet.mail.KeycloakProps;
+import com.acme.universitaet.mail.MailProps;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

@@ -1,6 +1,5 @@
 package com.acme.universitaet.mail;
 
-import com.acme.universitaet.MailProps;
 import com.acme.universitaet.entity.Universitaet;
 import jakarta.mail.internet.InternetAddress;
 import java.util.Objects;
@@ -14,7 +13,6 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import static jakarta.mail.Message.RecipientType.TO;
-
 
 /**
  * Mail-Client.

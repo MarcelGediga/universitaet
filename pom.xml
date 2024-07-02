@@ -268,7 +268,7 @@
         <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
         <spotbugs-maven-plugin.version>4.8.5.0</spotbugs-maven-plugin.version>
         <spotless.version>2.43.0</spotless.version>
-        <!-- <spring-boot-plugin.version>3.3.0</spring-boot-plugin.version> -->
+        <spring-boot-plugin.version>3.3.0</spring-boot-plugin.version>
         <surefire-junit-platform>3.2.5</surefire-junit-platform>
         <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
 
@@ -291,6 +291,10 @@
     </pluginRepositories>
 
     <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
         <repository>
             <id>spring.milestone</id>
             <name>Spring Milestone Repository</name>
@@ -889,22 +893,18 @@
                             <dependency>
                                 <groupId>org.jruby</groupId>
                                 <artifactId>jruby</artifactId>
-                                <version>${jruby.version}</version>
                             </dependency>
                             <dependency>
                                 <groupId>org.asciidoctor</groupId>
                                 <artifactId>asciidoctorj</artifactId>
-                                <version>${asciidoctorj.version}</version>
                             </dependency>
                             <dependency>
                                 <groupId>org.asciidoctor</groupId>
                                 <artifactId>asciidoctorj-diagram</artifactId>
-                                <version>${asciidoctorj-diagram.version}</version>
                             </dependency>
                             <dependency>
                                 <groupId>org.asciidoctor</groupId>
                                 <artifactId>asciidoctorj-pdf</artifactId>
-                                <version>${asciidoctorj-pdf.version}</version>
                             </dependency>
                         </dependencies>
 

@@ -1,4 +1,4 @@
-package com.acme.universitaet;
+package com.acme.universitaet.mail;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.bind.DefaultValue;

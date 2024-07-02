@@ -1,6 +1,6 @@
 package com.acme.universitaet.security;
 
-import com.acme.universitaet.KeycloakProps;
+import com.acme.universitaet.mail.KeycloakProps;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -91,5 +91,6 @@ public class AuthController {
     @ExceptionHandler
     @ResponseStatus(UNAUTHORIZED)
     void onUnauthorized(@SuppressWarnings("unused") final HttpClientErrorException.Unauthorized ex) {
+        //Extra Leer
     }
 }
