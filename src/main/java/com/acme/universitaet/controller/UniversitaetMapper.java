@@ -23,6 +23,8 @@ interface UniversitaetMapper {
      * @return Konvertiertes Universitaet-Objekt mit null als ID
      */
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "dozentName", ignore = true)
+    @Mapping(target = "dozentEmail", ignore = true)
     @Mapping(target = "version", ignore = true)
     @Mapping(target = "erzeugt", ignore = true)
     @Mapping(target = "aktualisiert", ignore = true)

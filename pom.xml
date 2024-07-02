@@ -49,7 +49,7 @@
     3) Tests
         .\mvnw test jacoco:report
             ${project.build.directory}/site/jacoco/*.html
-        .\mvnw test -Dtest=KundeGetRestTest
+        .\mvnw test -Dtest=UniversitaetGetRestTest
 
     4) Codeanalyse: Checkstyle, SpotBugs, Spotless, Modernizer, SonarQube
         .\mvnw checkstyle:checkstyle spotbugs:check spotless:check modernizer:modernizer jxr:jxr

@@ -7,7 +7,10 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
  * Spring-Konfiguration für Properties "app.keycloak.*".
  *
  * @author <a href="mailto:Marcel.Gediga@h-ka.de">Marcel Gediga</a>
+ * @param schema http oder https (für den Keycloak-Server)
  * @param host Rechnername des Keycloak-Servers
+ * @param port Port des Keycloak-Servers
+ * @param clientId Client-ID im Keycloak-Server
  * @param clientSecret Client-Secret gemäß der Client-Konfiguration in Keycloak
  */
 @ConfigurationProperties(prefix = "app.keycloak")
@@ -21,5 +24,9 @@ public record KeycloakProps(
     @DefaultValue("8880")
     int port,
 
-    String clientSecret) {
+    @DefaultValue("spring-client")
+    String clientId,
+
+    String clientSecret
+) {
 }

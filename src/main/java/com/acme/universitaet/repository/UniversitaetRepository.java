@@ -102,4 +102,13 @@ public interface UniversitaetRepository extends JpaRepository<Universitaet,
         ORDER BY k.name
         """)
     List<String> findNamenByPrefix(String prefix);
+
+    /**
+     * Dozent zu gegebener Universitaets-ID aus der DB ermitteln.
+     *
+     * @param dozentId Universitaets-ID für die Suche
+     * @return Liste der gefundene Dozenten
+     */
+    @EntityGraph(ADRESSE_GRAPH)
+    List<Dozent> findByDozentId(UUID dozentId);
 }

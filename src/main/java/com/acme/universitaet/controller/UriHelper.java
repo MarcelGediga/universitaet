@@ -34,7 +34,7 @@ class UriHelper {
     private static final String X_FORWARDED_PROTO = "X-Forwarded-Proto";
     private static final String X_FORWARDED_HOST = "x-forwarded-host";
     private static final String X_FORWARDED_PREFIX = "x-forwarded-prefix";
-    private static final String UNIVERSITAET_PREFIX = "/universitaet";
+    private static final String DOZENT_PREFIX = "/dozent";
 
     /**
      * Basis-URI ermitteln, d.h. ohne Query-Parameter.
@@ -71,7 +71,7 @@ class UriHelper {
         // x-forwarded-prefix: null bei Kubernetes Ingress Controller bzw. "/universitaeten" bei Spring Cloud Gateway
         if (forwardedPrefix == null) {
             log.trace("getBaseUriForwarded: Kein '{}' im Header", X_FORWARDED_PREFIX);
-            forwardedPrefix = UNIVERSITAET_PREFIX;
+            forwardedPrefix = DOZENT_PREFIX;
         }
         final var baseUri = forwardedProto + "://" + forwardedHost + forwardedPrefix + '/' + REST_PATH;
         log.debug("getBaseUriForwarded: baseUri={}", baseUri);

@@ -66,12 +66,12 @@ Wenn man den eigenen Microservice direkt mit Windows - nicht mit Kubernetes -
 laufen lässt, kann man PostgreSQL und das Administrationswerkzeug pgadmin
 einfach mit _Docker Compose_ starten und später auch herunterfahren.
 
-> ❗ Vor dem 1. Start von PostgreSQL muss man das Skript `create-db-kunde.sql`
+> ❗ Vor dem 1. Start von PostgreSQL muss man das Skript `create-db-dozent.sql`
 > aus dem Verzeichnis `extras\db\postgres\sql` nach
 > `C:\Zimmermann\volumes\postgres\sql` kopieren und die Anleitung ausführen.
 > Für die Windows-Verzeichnisse `C:\Zimmermann\volumes\postgres\data`,
 > `C:\Zimmermann\volumes\postgres\tablespace` und
-> `C:\Zimmermann\volumes\postgres\tablespace\kunde` muss außerdem Vollzugriff
+> `C:\Zimmermann\volumes\postgres\tablespace\dozent` muss außerdem Vollzugriff
 > gewährt werden, was über das Kontextmenü mit _Eigenschaften_ und den
 > Karteireiter _Sicherheit_ für die Windows-Gruppe _Benutzer_ eingerichtet
 > werden kann.
@@ -393,7 +393,7 @@ Außerdem kann man in `application.yml`
 Bei Verwendung der Buildpacks werden ggf. einige Archive von Github heruntergeladen,
 wofür es leider kein Caching gibt. Ein solches Image kann mit dem Linux-User `cnb`
 gestartet werden. Mit der Task bootBuildImage kann man im Verzeichnis für das
-Projekt "bestellung" ebenfalls ein Docker-Image erstellen.
+Projekt "dozent" ebenfalls ein Docker-Image erstellen.
 
 ```powershell
     # Gradle und Buildpacks mit Bellsoft Liberica
@@ -698,7 +698,7 @@ in Kubernetes verfügbar ist.
 
     # GraphQL mit Invoke-WebRequest:
     $response = Invoke-WebRequest https://kubernetes.docker.internal/kunden/graphql `
-        -Method Post -Body '{"query": "query { kunde(id: \"00000000-0000-0000-0000-000000000001\") { nachname } }"}' `
+        -Method Post -Body '{"query": "query { kunde(id: \"00000000-0000-0000-0000-000000000001\") { name } }"}' `
         -ContentType 'application/json' `
         -SslProtocol Tls13 -HttpVersion 2 -SkipCertificateCheck `
         -Authentication Basic -Credential $credential
@@ -708,7 +708,7 @@ in Kubernetes verfügbar ist.
     curl --verbose --user admin:p --tlsv1.3 --http2 --insecure https://kubernetes.docker.internal/kunden/00000000-0000-0000-0000-000000000001
 
     # GraphQL mit cURL:
-    curl --verbose --data '{"query": "query { kunde(id: \"00000000-0000-0000-0000-000000000001\") { nachname } }"}' `
+    curl --verbose --data '{"query": "query { kunde(id: \"00000000-0000-0000-0000-000000000001\") { name } }"}' `
         --header 'Content-Type: application/json' `
         --tlsv1.3 --insecure `
         --user admin:p `

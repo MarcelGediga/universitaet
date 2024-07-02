@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Size;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 import lombok.Builder;
 
 /**
@@ -26,6 +27,7 @@ import lombok.Builder;
  * @param fakultaeten Die Fakultaet einer Universitaet.
  * @param username Benutzername
  * @param password Passwort
+ * @param dozentId ID des Dozenten
  */
 @Builder
 @SuppressWarnings("RecordComponentNumber")
@@ -55,7 +57,9 @@ record UniversitaetDTO(
     List<FakultaetDTO> fakultaeten,
 
     String username,
-    String password
+    String password,
+
+    UUID dozentId
 ) {
     /**
      * Marker-Interface f&uuml;r Jakarta Validation: zus&auml;tzliche Validierung beim Neuanlegen.
@@ -63,7 +67,7 @@ record UniversitaetDTO(
     interface OnCreate { }
 
     /**
-     * Muster für einen gültigen Nachnamen.
+     * Muster für einen gültigen Namen.
      */
     public static final String NAME_PATTERN =
         "(o'|von|von der|von und zu|van)?[A-ZÄÖÜ][a-zäöüß]+(-[A-ZÄÖÜ][a-zäöüß]+)?";

@@ -1,5 +1,6 @@
 package com.acme.universitaet;
 
+import com.acme.universitaet.config.ApplicationConfig;
 import com.acme.universitaet.dev.DevConfig;
 import com.acme.universitaet.mail.KeycloakProps;
 import com.acme.universitaet.mail.MailProps;

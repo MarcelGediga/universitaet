@@ -1,6 +1,7 @@
-package com.acme.universitaet.security;
+package com.acme.universitaet.config;
 
 import com.acme.universitaet.mail.KeycloakProps;
+import com.acme.universitaet.security.KeycloakRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;

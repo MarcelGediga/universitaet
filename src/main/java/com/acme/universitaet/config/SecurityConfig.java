@@ -1,4 +1,4 @@
-package com.acme.universitaet.security;
+package com.acme.universitaet.config;
 
 import com.c4_soft.springaddons.security.oidc.starter.synchronised.resourceserver.ResourceServerExpressionInterceptUrlRegistryPostProcessor;
 import java.util.Map;
