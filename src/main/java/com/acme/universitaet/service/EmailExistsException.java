@@ -9,6 +9,7 @@ import lombok.Getter;
  */
 @Getter
 public class EmailExistsException extends RuntimeException {
+
     /**
      * Bereits vorhandene Emailadresse.
      */

@@ -13,8 +13,6 @@ import lombok.ToString;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-
-
 /**
  * Model-Klasse für Spring HATEOAS. @lombok.Data fasst die Annotationsn @ToString, @EqualsAndHashCode, @Getter, @Setter
  * und @RequiredArgsConstructor zusammen.
@@ -35,7 +33,6 @@ class UniversitaetModel extends RepresentationModel<UniversitaetModel> {
 
     @EqualsAndHashCode.Include
     private final String email;
-
     private final LocalDate gruendungsdatum;
     private final URL homepage;
     private final Adresse adresse;

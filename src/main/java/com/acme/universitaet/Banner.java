@@ -39,7 +39,6 @@ import org.springframework.security.core.SpringSecurityCoreVersion;
 @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
 final class Banner {
 
-    // http://patorjk.com/software/taag/#p=display&f=Slant&t=universitaet%202024.04.0
     private static final String FIGLET = """
 
            __  __      _                      _ __             __\s
@@ -58,7 +57,6 @@ final class Banner {
      * Banner für den Server-Start.
      */
     static final String TEXT = STR."""
-
         \{FIGLET}
         (C) Marcel Gediga, Hochschule Karlsruhe
         Version             2024.04.0

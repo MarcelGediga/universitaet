@@ -74,7 +74,6 @@ public class UniversitaetReadService {
         return universitaet;
     }
 
-
     /**
      * Universitaeten anhand von Suchkriterien als Collection suchen.
      *

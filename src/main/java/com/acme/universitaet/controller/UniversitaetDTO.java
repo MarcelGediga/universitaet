@@ -55,6 +55,7 @@ record UniversitaetDTO(
     List<FakultaetDTO> fakultaeten,
 
     String username,
+
     String password
 ) {
     /**

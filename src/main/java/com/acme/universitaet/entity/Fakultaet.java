@@ -34,24 +34,18 @@ public class Fakultaet {
     /**
      * Der Name der Fakultät.
      *
-     * @param name Der Name.
-     * @return Der Name.
      */
     private String name;
 
     /**
      * Der Ansprechpartener der Fakultät.
      *
-     * @param ansprechpartener Der Ansprechpartener.
-     * @return Der Ansprechpartener.
      */
     private String ansprechpartner;
 
     /**
      * Der Dekan der Fakultät.
      *
-     * @param dekan Der Dekan.
-     * @return Der Dekan.
      */
     private String dekan;
 }

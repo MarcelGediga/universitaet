@@ -32,17 +32,11 @@ public class Adresse {
 
     /**
      * Die Postleitzahl für die Adresse.
-     *
-     * @param plz Die Postleitzahl als String
-     * @return Die Postleitzahl als String
      */
     private String plz;
 
     /**
      * Der Ort für die Adresse.
-     *
-     * @param ort Der Ort als String
-     * @return Der Ort als String
      */
     private String ort;
 }

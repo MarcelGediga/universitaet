@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
 import static com.acme.universitaet.entity.Universitaet.ADRESSE_FAKULTAETEN_GRAPH;
 import static com.acme.universitaet.entity.Universitaet.ADRESSE_GRAPH;
 
-
 /**
  * Repository für den DB-Zugriff bei Universitaet.
  */

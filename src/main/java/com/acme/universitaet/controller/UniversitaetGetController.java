@@ -79,7 +79,6 @@ public class UniversitaetGetController {
      * @return Ein Response mit dem Statuscode 200 und die gefundene Universitaet mit Atom-Links oder Statuscode 404.
      */
     @GetMapping(path = "{id:" + ID_PATTERN + "}", produces = HAL_JSON_VALUE)
-    // "Distributed Tracing" durch https://micrometer.io bei Aufruf eines anderen Microservice
     @Observed(name = "get-by-id")
     @Operation(summary = "Suche mit der Universitaet-ID", tags = "Suchen")
     @ApiResponse(responseCode = "200", description = "Universitaet gefunden")
@@ -94,7 +93,7 @@ public class UniversitaetGetController {
     ) {
         final var username = jwtService.getUsername(jwt);
         log.debug("getById: id={}, version={}, username={}", id, version, username);
-        // KEIN Optional https://github.com/spring-projects/spring-security/issues/3208
+
         if (username == null) {
             log.error("Trotz Spring Security wurde getById() ohne Benutzername im JWT aufgerufen");
             return status(UNAUTHORIZED).build();
@@ -112,6 +111,7 @@ public class UniversitaetGetController {
 
         final var model = universitaetToModel(universitaet, request);
         log.debug("getById: model={}", model);
+
         return ok().eTag(currentVersion).body(model);
     }
 

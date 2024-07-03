@@ -63,8 +63,6 @@ public class Universitaet {
     /**
      * Die ID der Universität.
      *
-     * @param id Die ID.
-     * @return Die ID.
      */
     @Id
     @GeneratedValue
@@ -80,40 +78,30 @@ public class Universitaet {
     /**
      * Der Name der Universität.
      *
-     * @param name Der Name.
-     * @return Der Name.
      */
     private String name;
 
     /**
      * Die Emailadresse der Universität.
      *
-     * @param email Die Emailadresse.
-     * @return Die Emailadresse.
      */
     private String email;
 
     /**
      * Das Gründungsdatum der Universität.
      *
-     * @param gruendungsdatum Das Gründungsdatum.
-     * @return Das Gründungsdatum.
      */
     private LocalDate gruendungsdatum;
 
     /**
      * Die URL zur Homepage der Universität.
      *
-     * @param homepage Die URL zur Homepage.
-     * @return Die URL zur Homepage.
      */
     private URL homepage;
 
     /**
      * Die Adresse der Universität.
      *
-     * @param adresse Die Adresse.
-     * @return Die Adresse.
      */
     @OneToOne(optional = false, cascade = {PERSIST, REMOVE}, fetch = LAZY, orphanRemoval = true)
     @ToString.Exclude
@@ -122,8 +110,6 @@ public class Universitaet {
     /**
      * Die Fakultäten der Universität.
      *
-     * @param fakultaeten Die Fakultäten.
-     * @return Die Fakultäten.
      */
     @OneToMany(cascade = {PERSIST, REMOVE}, orphanRemoval = true)
     @JoinColumn(name = "universitaet_id")
